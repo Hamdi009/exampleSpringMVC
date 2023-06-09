@@ -17,9 +17,9 @@ public class ProductController {
     private static List<Product> products = new ArrayList<>();
     private static Long idCount = 0L;
     static {
-        products.add(new Product(++idCount, "SS-S9", "Samsung Galaxy S9", 500D, 50, "static/images/samsung-s9.png"));
+        products.add(new Product(++idCount, "SS-S9", "Samsung Galaxy S9", 500D, 50, "samsung-s9.png"));
         products.add(new Product(++idCount, "NK-5P", "Nokia Plus", 60D, 60, null));
-        products.add(new Product(++idCount, "IP-7", "Iphone 7", 550D, 30, "static/images/siphone-7.png"));
+        products.add(new Product(++idCount, "IP-7", "Iphone 7", 550D, 30, "iphone-7.png"));
     }
 
     //@GetMapping(value = {"/", "/products"})

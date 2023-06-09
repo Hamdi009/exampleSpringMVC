@@ -8,10 +8,10 @@
 <script type="text/javascript"></script>
 </head>
 <body>
-    <div class="centerContent">
-        <h1>Product List</h1>
-        <img src="../static/images/logo.png" alt="logo"> 
-    </div>
+    <img style="object-position: center;" src="/images/logo.png" alt="logo"> 
+    <h1>Product List</h1>
+        
+
     
     
     <table>
@@ -32,9 +32,10 @@
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.quantity}"></td>
-                <td><img  th:src="@{'/'+ ${product.image}}" /></td>
+                <td><img  th:src="@{'/images/'+ ${product.image}}" class="imageg" alt="image"/></td>
             </tr>
         </tbody>
     </table>
+    
 </body>
 </html>

@@ -1,9 +1,9 @@
 /* style.css */
 
 /* Center the table */
-.table-container, .centerContent{
+.table-container, h1{
     display: flex;
-    justify-content: center;
+    justify-content: center; 
   }
 
   
@@ -45,3 +45,7 @@
     margin: 20px;
   }
   
+  img.imageg {
+    height: 100px;
+    width: 40%;
+  }

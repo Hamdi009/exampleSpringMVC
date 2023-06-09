@@ -20,7 +20,7 @@ public class Product {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.image = "images/"+image;;
+        this.image = image;
     }
 
 
