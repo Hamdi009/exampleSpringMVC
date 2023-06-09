@@ -1,0 +1,47 @@
+/* style.css */
+
+/* Center the table */
+.table-container, .centerContent{
+    display: flex;
+    justify-content: center;
+  }
+
+  
+  /* Style the table */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px; /* Adjust the maximum width as needed */
+    margin: 0 auto;
+  }
+  
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  td {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Style the table header */
+  thead {
+    font-size: 18px;
+  }
+  
+  /* Style the table body */
+  tbody {
+    font-size: 16px;
+  }
+  
+  /* Add some spacing */
+  body {
+    margin: 20px;
+  }
+  
