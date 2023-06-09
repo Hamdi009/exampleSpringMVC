@@ -1,8 +1,11 @@
 package com.example.springmvcproject.models;
 
-import lombok.Data;
 
-@Data
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Product {
     private Long id;
     private String code;
