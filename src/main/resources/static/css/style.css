@@ -1,7 +1,7 @@
 /* style.css */
 
 /* Center the table */
-.table-container, h1{
+.table-container, h1, .headerr{
     display: flex;
     justify-content: center; 
   }
