@@ -3,19 +3,20 @@ package com.example.springmvcproject.models;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class ProductForm {
     private Long id;
-    @NotBlank(message = "")
+    @Size(min=2, max=20, message="Code must be between 2 and 20 characters")
     private String code;
-    @NotBlank(message = "")
+    @Size(min=2, max=20, message="Name must be between 2 and 20 characters")
     private String name;
-    @NotNull(message="")
-    @DecimalMin(value="")
+    @Positive(message= "Please set the price")
     private Double price;
-    @NotNull(message="")
+    @Positive(message ="Please set the quantity")
     private Integer quantity;
-    private String image;
+    private String image = "no-image.png";
 }

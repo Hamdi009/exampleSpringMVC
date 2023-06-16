@@ -49,13 +49,10 @@ public class ProductController {
     @PostMapping("/create")
     public String createProduct(@ModelAttribute("productForm") @Valid ProductForm productForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()) return "create";
-        // StringBuilder fileName = new StringBuilder();
-        // MultipartFile file = files[0];
-        // Path filaNameAndPath = Paths.get(upload, null);
         Product product = new Product(++idCount, productForm.getCode(), productForm.getName(), productForm.getPrice(), productForm.getQuantity(), null);
         products.add(product);
 
-        return "redirect:/create";
+        return "redirect:/products";
     }
 
     @GetMapping("/{id}/update")
