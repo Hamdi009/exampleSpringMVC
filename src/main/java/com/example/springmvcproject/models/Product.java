@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -31,7 +32,7 @@ public class Product {
     @Positive(message = "quantity should be > 0")
     private Integer quantity;
     private String image;
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="category_id", referencedColumnName = "id")
     private Category category;
     
