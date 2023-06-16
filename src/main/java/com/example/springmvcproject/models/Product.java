@@ -1,27 +1,40 @@
 package com.example.springmvcproject.models;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true, nullable = false)
     private String code;
+    @Column(length = 30, nullable = false, unique = false)
     private String name;
+    @Positive(message = "price should be > 0.0")
     private Double price;
+    @Positive(message = "quantity should be > 0")
     private Integer quantity;
     private String image;
-
-    public Product(Long id, String code, String name, Double price, Integer quantity, String image) {
-        this.id = id;
-        this.code = code;
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-        this.image = image;
-    }
+    @OneToMany
+    @JoinColumn(name="category_id", referencedColumnName = "id")
+    private Category category;
+    
 
 
 }
