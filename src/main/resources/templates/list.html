@@ -8,10 +8,9 @@
 <script type="text/javascript"></script>
 </head>
 <body>
-    <div class="headerr"> 
-        <img style="object-position: center;" src="/images/logo.png" alt="logo"> 
-    </div>
-    <h1>Product List</h1>
+    <th:block th:insert="fragments/header.html :: header('Products List')" /> 
+    
+    
     <table>
         <thead>
             <tr>
@@ -32,6 +31,10 @@
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.quantity}"></td>
                 <td><img  th:src="@{'/images/'+ ${product.image}}" class="imageg" alt="image"/></td>
+                <td class="align-middle">
+                    <button><a class="btn btn-primary btn-sm" th:href="@{|/products/${product.id}/update|}" role="button">Edit</a></button>
+                    <button><a class="btn btn-danger btn-sm" th:href="@{|/products/${product.id}/delete|}" role="button">Delete</a></button>
+                </td>
 
             </tr>
         </tbody>

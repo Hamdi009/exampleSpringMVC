@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import com.example.springmvcproject.models.Product;
 import com.example.springmvcproject.models.ProductForm;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import jakarta.validation.Valid;
 
@@ -29,7 +29,7 @@ public class ProductController {
     private static Long idCount = 0L;
     static {
         products.add(new Product(++idCount, "SS-S9", "Samsung Galaxy S9", 500D, 50, "samsung-s9.png"));
-        products.add(new Product(++idCount, "NK-5P", "Nokia Plus", 60D, 60, null));
+        products.add(new Product(++idCount, "NK-5P", "Nokia Plus", 60D, 60, "no-image.png"));
         products.add(new Product(++idCount, "IP-7", "Iphone 7", 550D, 30, "iphone-7.png"));
     }
 
@@ -40,14 +40,14 @@ public class ProductController {
         return "list";
     }
 
-    @GetMapping("create")
+    @GetMapping(value = "create")
         public String addProduct(Model model){
-            model.addAttribute("productForm", new ProductForm());
+            model.addAttribute("product", new ProductForm());
             return "create";
     }
 
     @PostMapping("/create")
-    public String createProduct(@ModelAttribute("productForm") @Valid ProductForm productForm, BindingResult bindingResult, @RequestParam("files") MultipartFile[] files){
+    public String createProduct(@ModelAttribute("productForm") @Valid ProductForm productForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()) return "create";
         // StringBuilder fileName = new StringBuilder();
         // MultipartFile file = files[0];
@@ -58,26 +58,53 @@ public class ProductController {
         return "redirect:/create";
     }
 
-    @GetMapping("/{id}/edit")
-    public String showEditForm(){
-        return "";
+    @GetMapping("/{id}/update")
+    public String showEditForm(@PathVariable("id") long id, Model model){
+        Product exisitingProduct = null;
+        try {
+            exisitingProduct = products.stream().filter(x -> (long) id == x.getId()).findFirst().get();
+        } catch (Exception e) {
+            return "redirect:/products";
+        }
+        model.addAttribute("product", exisitingProduct);
+        return "update";
     }
+
+    @PostMapping(value="{id}/update")
+    public String updateProduct(@PathVariable("id") long id, @Valid @ModelAttribute("product") ProductForm product, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) return "update";
+        Product exisitingProduct = null;
+        try {
+            exisitingProduct = products.stream().filter(x -> (long) id == x.getId() ).findFirst().get();
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            return "redirect:/products";
+        }
+        if (exisitingProduct == null) return "redirect:/products";
+        exisitingProduct.setName(product.getName());
+        exisitingProduct.setCode(product.getCode());
+        exisitingProduct.setPrice(product.getPrice());
+        exisitingProduct.setQuantity(product.getQuantity());
+        return "redirect:/products";
+    }
+
 
     @GetMapping("/{id}/delete")
     public String deleteItem(@PathVariable("id") Long id){
         Product productToDelete = null;
-        for (Product product : products){
-            if(product.getId().equals(id)){
-                product = productToDelete;
-                break;
-            }
+        
+        try {
+           productToDelete =  products.stream().filter(x -> (long) id == x.getId() ).findFirst().get();
+        } catch (Exception e) {
+            // TODO: handle exception
+            return "redirect:/products";
         }
-        if(productToDelete !=null){
-            products.remove(productToDelete);
-        } 
-        return "redirect:/list";
-    }
-
+        if (productToDelete == null) return "redirect:/products";
+        products.remove(productToDelete);
+        return "redirect:/products";
     
+
+    }
 
 }
