@@ -1,4 +1,4 @@
-package com.example.springmvcproject.models;
+package com.example.springmvcproject.models.requests;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
