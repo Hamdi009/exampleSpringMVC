@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Create New Product</title>
 <script type="text/javascript"></script>
 </head>
 <body>
-
+    <th:block th:insert="~{fragments/header.html :: header('Create Category')}" /> 
+    <a th:href="@{/products}">Back</a>
+    <br>
+    <form action="/categories/create" method="post" th:object="${category}">
+          <div >
+            <label >Name</label>
+            <input type="text" name="name"  placeholder="Enter category name" aria-describedby="helpId" th:field="*{name}">
+            <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+          </div>           
+            <a href="/products" >Back</a>
+            <button type="submit" >Submit</button>
+    </form>
 </body>
 </html>

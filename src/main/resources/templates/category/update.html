@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"></script>
 </head>
 <body>
-
+    <th:block th:insert="~{fragments/header.html :: header( 'Update Category' )}" />
+    
+    <form  method="post" th:object="${category}">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="Enter name" aria-describedby="helpId" th:field="*{name}">
+          <small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+        </div>
+        
+         
+          <a href="/products" class="btn btn-secondary ms-auto">Back</a>
+          <button type="submit" class="btn btn-primary ms-1">Submit</button>
+        </div>
 </body>
 </html>

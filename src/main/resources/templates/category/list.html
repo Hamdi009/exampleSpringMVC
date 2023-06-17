@@ -1,11 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+<title>Online Store</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
 <script type="text/javascript"></script>
 </head>
 <body>
+    <th:block th:insert="fragments/header.html :: header('')" /> 
+    
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="category : ${categories}">
+                <td th:text="${product.name}"></td>
+                <td class="align-middle">
+                    <button><a  th:href="@{|/category/${category.id}/update|}" role="button">Edit</a></button>
+                    <button><a  th:href="@{|/category/${category.id}/delete|}" role="button">Delete</a></button>
+                </td>
 
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/category/create}"><button>Add Category</button></a>
 </body>
 </html>
