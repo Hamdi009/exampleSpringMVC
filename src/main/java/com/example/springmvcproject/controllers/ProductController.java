@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -27,16 +28,8 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-    // private static List<Product> products = new ArrayList<>();
-    // private static Long idCount = 0L;
-    // static {
-    //     products.add(new Product(++idCount, "SS-S9", "Samsung Galaxy S9", 500D, 50, "samsung-s9.png"));
-    //     products.add(new Product(++idCount, "NK-5P", "Nokia Plus", 60D, 60, "no-image.png"));
-    //     products.add(new Product(++idCount, "IP-7", "Iphone 7", 550D, 30, "iphone-7.png"));
-    // }
 
     @GetMapping()
-    //@RequestMapping("/")
     public String listOfProducts(Model model){
         List<Product> products = productService.gettAllProduct();
         model.addAttribute("products", products);       
@@ -44,7 +37,8 @@ public class ProductController {
     }
 
     @GetMapping("/create")
-        public String addProduct(Model model){
+        public String addProduct( Model model){
+
             model.addAttribute("product", new ProductForm());
             return "create";
     }

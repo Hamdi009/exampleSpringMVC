@@ -2,15 +2,13 @@
 <html  xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
-<title>Online Store</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-
+<title>Manage products</title>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 <script type="text/javascript"></script>
 </head>
 <body>
-    <th:block th:insert="fragments/header.html :: header('')" /> 
-    
-    
+<th:block th:insert="fragments/header.html :: header('')" /> 
+<div class="container-fluid text-center">
     <table>
         <thead>
             <tr>
@@ -29,5 +27,8 @@
         </tbody>
     </table>
     <a th:href="@{/category/create}"><button>Add Category</button></a>
+</div> 
+
+    
 </body>
 </html>
